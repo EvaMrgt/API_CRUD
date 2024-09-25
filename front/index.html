@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="./assets/imgs/gays.png">
+    <title>Recipipi</title>
+</head>
+
+<body class="flex flex-col min-h-screen">
+    <header class="bg-black text-white">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-20">
+                    <a href="/front/index.html" class="text-2xl font-bold">La recipipi</a>
+                    <nav>
+                        <ul class="flex space-x-5">
+                            <li>
+                                <a href="/front/index.html" class="hover:text-blue-400 transition duration-300">Accueil</a>
+                            </li>
+                            <li>
+                                <a href="#" id="connexionLink" class="hover:text-blue-400 transition duration-300">Connexion</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <form id="searchForm" class="relative">
+                        <input type="search" id="searchInput" name="searchbar" placeholder="Rechercher..."
+                            class="bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 w-64">
+                        <button type="button" id="searchButton"
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="bg-gray-900 text-white py-12 px-4">
+        <div class="container mx-auto">
+            <section id="searchResultSection" class="mb-16 hidden">
+                <h2 class="text-3xl font-bold mb-8 text-center text-blue-400">Résultats</h2>
+                <div id="searchResult" class="grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- résultat de la recherche -->
+                </div>
+            </section>
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold mb-8 text-center text-blue-400">Recettes</h2>
+                <div id="recetteFav" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- recettes ici  -->
+                </div>
+            </section>
+
+            <section class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold text-blue-400 mb-6">Créer une nouvelle recette</h2>
+
+                <form class="space-y-6">
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-300">Titre</label>
+                        <input type="text" id="title" name="title"
+                            class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                    </div>
+
+                    <div>
+                        <label for="ingredients"
+                            class="block text-sm font-medium text-gray-300 mb-2">Ingrédients</label>
+                        <div id="ingredientsList" class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <input type="text"
+                                    class="flex-grow bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                <button type="button"
+                                    class="add-ingredient bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <label for="instructions"
+                            class="block text-sm font-medium text-gray-300 mb-2">Instructions</label>
+                        <div id="instructionsList" class="space-y-2">
+                            <div class="flex items-center space-x-2">
+                                <input type="text"
+                                    class="flex-grow bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                                <button type="button"
+                                    class="add-instruction bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="timePreparation" class="block text-sm font-medium text-gray-300">Temps de
+                                préparation (min)</label>
+                            <input type="number" id="timePreparation" name="timePreparation"
+                                class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                        </div>
+                        <div>
+                            <label for="timeCooking" class="block text-sm font-medium text-gray-300">Temps de cuisson
+                                (min)</label>
+                            <input type="number" id="timeCooking" name="timeCooking"
+                                class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="difficulty" class="block text-sm font-medium text-gray-300">Difficulté</label>
+                        <select id="difficulty" name="difficulty"
+                            class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                            <option>Facile</option>
+                            <option>Moyen</option>
+                            <option>Difficile</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="category" class="block text-sm font-medium text-gray-300">Catégorie</label>
+                        <select id="category" name="category"
+                            class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                            <option>Petit déjeuner</option>
+                            <option>Entrée</option>
+                            <option>Plat principal</option>
+                            <option>Dessert</option>
+                            <option>Boisson</option>
+                            <option>Snack</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="image" class="block text-sm font-medium text-gray-300 mb-2">Ajouter une image
+                            (optionnel)</label>
+                        <input type="file" id="image" name="image" accept="image/*"
+                            class="mt-1 block w-full bg-gray-800 border border-gray-700 rounded-md shadow-sm py-2 px-3 text-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+                    </div>
+
+                    <div>
+                        <button type="button" id="createbtn"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                            Créer la recette
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+    </main>
+    <footer class="bg-gray-900 text-white py-6 w-full">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center items-center">
+                <p class="text-center">Copyright &copy; 2024 Eva Margot. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="./assets/js/recettefetch.js"></script>
+<script src="./assets/js/userfetch.js"></script>
+
+</html>
